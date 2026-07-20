@@ -14,10 +14,14 @@
 - [Claude desde terminal:](#claude-desde-terminal)
   - [Install](#install)
   - [Start](#start)
-- [Tools](#tools)
-- [Skill](#skill)
-  - [Skill (Habilidad)](#skill-habilidad)
+- [Tools Claude](#tools-claude)
+- [Skills](#skills)
+  - [Skill (Definition)](#skill-definition)
   - [MCP (Model Context Protocol)](#mcp-model-context-protocol)
+
+<br>
+
+<p align="center"><img src="./img/anatomia.jpg" width="600"   alt=" " /></p>
 
 <br>
 
@@ -51,17 +55,26 @@ Escribe ```claude```
 
 <br>
 
-# Tools
+# Tools Claude
 
-Claude-StatusBar. https://github.com/afsh4ck/Claude-Status-Bar
+```Claude-StatusBar``` Status Bar para Claude Code escrito en bash. Muestra modelo, contexto, tokens, rate limits y duración de sesión en una sola línea, con animaciones suaves a 1 Hz.
+Install:
+```PowerShell
+git clone https://github.com/afsh4ck/Claude-Status-Bar.git
+cd Claude-Status-Bar
+bash install.sh
+```
+> :warning: **Warning:** Reinicia Claude Code una vez finalizado.
 
 <br>
 
-# Skill
+# Skills
 Inicialmente es necesario crear la carpeta
 ```PowerShell
 mkdir -p ~/.claude/skills
 ```
+<br>
+
 ```prompt-master``` es una skill que te ayuda a redactar mejores prompts para cualquier herramienta de IA (Claude, ChatGPT, Midjourney, Cursor, etc.), en lugar de que tú lo hagas a mano por ensayo y error.
 ```PowerShell
 git clone https://github.com/nidhinjs/prompt-master.git ~/.claude/skills/prompt-master
@@ -83,11 +96,7 @@ Agregar el Marketplace:
 
 <br>
 
-<p align="center"><img src="./img/anatomia.jpg" width="600"   alt=" " /></p>
-
-<br>
-
-## Skill (Habilidad)
+## Skill (Definition)
 
 Una Skill es una capacidad específica que un sistema AI puede ejecutar para resolver una tarea concreta.
 
@@ -108,6 +117,8 @@ Una Skill normalmente tiene:
 * Reglas de uso
 
 > :bulb: **Tip:** Un agente AI puede decidir cuándo usar esa Skill.
+
+<br>
 
 ## MCP (Model Context Protocol)
 
