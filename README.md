@@ -11,12 +11,61 @@
 
 # Table of contents
 - [Table of contents](#table-of-contents)
+- [Claude desde terminal:](#claude-desde-terminal)
+  - [Install](#install)
+  - [Start](#start)
+- [Tools](#tools)
+- [Skill](#skill)
   - [Skill (Habilidad)](#skill-habilidad)
   - [MCP (Model Context Protocol)](#mcp-model-context-protocol)
 
 <br>
 
+<p align="center"><img src="./img/claude-code.webp" width="600"   alt=" " /></p>
 
+# Claude desde terminal:
+## Install
+```PowerShell
+irm https://claude.ai/install.ps1 | iex
+```
+Solo falta agregar esa carpeta a tu PATH. Tienes dos opciones:
+```PowerShell
+$currentPath = [Environment]::GetEnvironmentVariable('PATH', 'User')
+[Environment]::SetEnvironmentVariable('PATH', "$currentPath;$env:USERPROFILE\.local\bin", 'User')
+```
+> :warning: **Warning:** Después cierra PowerShell por completo y abre una ventana nueva (esto es importante, el cambio no aplica a la ventana actual). 
+
+## Start
+Escribe ```claude```
+* ```/login``` para autenticarte
+* ```Esc``` interrumpe a Claude si está trabajando
+* ```/help``` muestra los comandos disponibles
+* ```exit``` o ```Ctrl+D``` para salir
+
+> :memo: **Note:** Deberia correr tambien desde CMD, PowerShell 
+> 
+> :memo: **Note:** Carpeta de configuracion de claude ```cd ~/.claude/```
+
+
+<br>
+
+# Tools
+
+* Claude-StatusBar. https://github.com/afsh4ck/Claude-Status-Bar
+
+<br>
+
+# Skill
+Humanizalo. 
+```PowerShell
+git clone https://github.com/Hainrixz/humanizalo.git ~/.claude/skills/humanizalo
+```
+
+<br>
+
+<p align="center"><img src="./img/anatomia.jpg" width="600"   alt=" " /></p>
+
+<br>
 
 ## Skill (Habilidad)
 
@@ -77,6 +126,12 @@ El modelo usa MCP para:
 1. Leer repositorio
 2. Revisar logs
 3. Crear documento
+
+<br>
+
+<p align="center"><img src="./img/ecosistema.gif" width="600"   alt=" " /></p>
+
+
 
 <br>
 
