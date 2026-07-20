@@ -40,26 +40,46 @@ Escribe ```claude```
 * ```/login``` para autenticarte
 * ```Esc``` interrumpe a Claude si está trabajando
 * ```/help``` muestra los comandos disponibles
+* ```/skills``` ver todos los Skills disponibles
+* ```/plugin list``` ver los plugins instalados
 * ```exit``` o ```Ctrl+D``` para salir
 
 > :memo: **Note:** Deberia correr tambien desde CMD, PowerShell 
 > 
-> :memo: **Note:** Carpeta de configuracion de claude ```cd ~/.claude/```
+> :memo: **Note:** Carpeta de configuracion de claude ```cd ~/.claude/``` o ```%USERPROFILE%\.claude\skills\```
 
 
 <br>
 
 # Tools
 
-* Claude-StatusBar. https://github.com/afsh4ck/Claude-Status-Bar
+Claude-StatusBar. https://github.com/afsh4ck/Claude-Status-Bar
 
 <br>
 
 # Skill
-Humanizalo. 
+Inicialmente es necesario crear la carpeta
 ```PowerShell
-git clone https://github.com/Hainrixz/humanizalo.git ~/.claude/skills/humanizalo
+mkdir -p ~/.claude/skills
 ```
+```prompt-master``` es una skill que te ayuda a redactar mejores prompts para cualquier herramienta de IA (Claude, ChatGPT, Midjourney, Cursor, etc.), en lugar de que tú lo hagas a mano por ensayo y error.
+```PowerShell
+git clone https://github.com/nidhinjs/prompt-master.git ~/.claude/skills/prompt-master
+```
+***Usage:*** I need a prompt for Claude Code to build...
+
+<br>
+
+```grill-me``` (Interrogame) es un Skill para Claude Code cuyo objetivo es evitar que el modelo empiece a programar haciendo suposiciones. En lugar de generar código inmediatamente, el skill te entrevista de forma sistemática hasta entender completamente el problema.
+Agregar el Marketplace:
+```bash
+# Dentro de Claude Code ejecuta:
+/plugin marketplace add alirezarezvani/claude-skills
+/plugin install grill-me@claude-code-skills
+/plugin list # para verificar que esta instalado
+```
+***Usage:*** Quiero hacer un sistema... Grill me on this architecture... Grill me before implementing this project.
+
 
 <br>
 
