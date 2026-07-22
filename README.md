@@ -29,15 +29,28 @@
 
 # Claude desde terminal:
 ## Install
+Desde PowerShell:
 ```PowerShell
 irm https://claude.ai/install.ps1 | iex
 ```
-Solo falta agregar esa carpeta a tu PATH. Tienes dos opciones:
+
+install: from CMD:
 ```PowerShell
-$currentPath = [Environment]::GetEnvironmentVariable('PATH', 'User')
-[Environment]::SetEnvironmentVariable('PATH', "$currentPath;$env:USERPROFILE\.local\bin", 'User')
+curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
+```
+
+Solo falta agregar esa carpeta a tu PATH:
+```PowerShell
+[Environment]::SetEnvironmentVariable('PATH', "$([Environment]::GetEnvironmentVariable('PATH','User'));$env:USERPROFILE\.local\bin", 'User')
+# Tambien agrega este patch:
+$env:PATH += ";$env:USERPROFILE\.local\bin"
 ```
 > :warning: **Warning:** Después cierra PowerShell por completo y abre una ventana nueva (esto es importante, el cambio no aplica a la ventana actual). 
+
+> :warning: **Warning:** Si hay error probar si el problemas es de sesion. 
+```PowerShell
+& "$env:USERPROFILE\.local\bin\claude.exe"
+```
 
 ## Start
 Escribe ```claude```
@@ -49,8 +62,8 @@ Escribe ```claude```
 * ```exit``` o ```Ctrl+D``` para salir
 
 > :memo: **Note:** Deberia correr tambien desde CMD, PowerShell 
-> 
 > :memo: **Note:** Carpeta de configuracion de claude ```cd ~/.claude/``` o ```%USERPROFILE%\.claude\skills\```
+
 
 
 <br>
@@ -65,6 +78,25 @@ cd Claude-Status-Bar
 bash install.sh
 ```
 > :warning: **Warning:** Reinicia Claude Code una vez finalizado.
+
+> :warning: **Warning:** Si hay un error como :
+```PowerShell
+/c/Users/carja/AppData/Local/Microsoft/WindowsApps/python3: Permission denied
+```
+Edita el install.sh linea 37
+después de esta linea: 
+```PowerShell
+_python=$(command -v python 2>/dev/null || command -v python3 2>/dev/null || echo "")
+```
+pon esta:
+```PowerShell
+_python=$(command -v python3 2>/dev/null || command -v python 2>/dev/null || echo "")
+
+if [[ "$_python" == *"WindowsApps/python3"* ]]; then
+    _python=$(command -v python 2>/dev/null || echo "")
+fi
+```
+
 
 <br>
 
