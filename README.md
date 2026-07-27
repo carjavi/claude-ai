@@ -14,6 +14,10 @@
 - [Claude desde terminal:](#claude-desde-terminal)
   - [Install](#install)
   - [Start](#start)
+  - [Comandos esenciales (los que más vale la pena memorizar)](#comandos-esenciales-los-que-más-vale-la-pena-memorizar)
+  - [Comandos de razonamiento y estructura](#comandos-de-razonamiento-y-estructura)
+  - [Comandos de revisión y crítica](#comandos-de-revisión-y-crítica)
+  - [Comandos de estilo y tono](#comandos-de-estilo-y-tono)
 - [Tools Claude](#tools-claude)
 - [Skills](#skills)
   - [Skill (Definition)](#skill-definition)
@@ -34,18 +38,19 @@ Desde PowerShell:
 irm https://claude.ai/install.ps1 | iex
 ```
 
-install: from CMD:
+Desde CMD:
 ```PowerShell
 curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
 ```
 
-Solo falta agregar esa carpeta a tu PATH:
+Solo falta agregar esa carpeta a tu PATH: <br>
+PowerShell
 ```PowerShell
-[Environment]::SetEnvironmentVariable('PATH', "$([Environment]::GetEnvironmentVariable('PATH','User'));$env:USERPROFILE\.local\bin", 'User')
-# Tambien agrega este patch:
-$env:PATH += ";$env:USERPROFILE\.local\bin"
+$p=[Environment]::GetEnvironmentVariable('Path','User');if($p -notlike "*$env:USERPROFILE\.local\bin*"){[Environment]::SetEnvironmentVariable('Path',"$p;$env:USERPROFILE\.local\bin",'User')}
 ```
 > :warning: **Warning:** Después cierra PowerShell por completo y abre una ventana nueva (esto es importante, el cambio no aplica a la ventana actual). 
+>
+> Recomiendo la de PowerShell — no tiene el límite de 1024 caracteres que causó la corrupción de tu Machine PATH.
 
 > :warning: **Warning:** Si hay error probar si el problemas es de sesion. 
 ```PowerShell
@@ -64,6 +69,35 @@ Escribe ```claude```
 > :memo: **Note:** Deberia correr tambien desde CMD, PowerShell 
 > :memo: **Note:** Carpeta de configuracion de claude ```cd ~/.claude/``` o ```%USERPROFILE%\.claude\skills\```
 
+## Comandos esenciales (los que más vale la pena memorizar)
+
+| Comando | Posición | Qué hace |
+|---|---|---|
+| `/stepbystep` | Inicio | Estructura la respuesta en pasos secuenciales, claros y fáciles de seguir. |
+| `ULTRATHINK` | Inicio | Activa razonamiento extendido y profundo para preguntas complejas donde una respuesta rápida no alcanza. |
+| `/expand` | Inicio | Profundiza el tema con más contexto, ejemplos y detalle. |
+| `/simplify` | Inicio | Simplifica al máximo la explicación, como si fuera para alguien sin conocimiento previo. |
+| `L99` | Inicio | Responde con el nivel de un experto senior en la materia. |
+
+## Comandos de razonamiento y estructura
+
+| Comando | Posición | Qué hace |
+|---|---|---|
+| `/firstprinciples` | Inicio | Descarta todos los supuestos previos y reconstruye la respuesta razonando desde cero. |
+| `OODA` | Final | Aplica el framework militar Observar-Orientar-Decidir-Actuar para estructurar una decisión o plan de acción. |
+| `ALT3` | Inicio | Genera 3 alternativas distintas de respuesta para comparar enfoques. |
+
+## Comandos de revisión y crítica
+
+| Comando | Posición | Qué hace |
+|---|---|---|
+| `/critic` | Inicio | Claude adopta un rol crítico exigente y ataca la idea buscando activamente sus puntos débiles. |
+
+## Comandos de estilo y tono
+
+| Comando | Posición | Qué hace |
+|---|---|---|
+| `/ghost` | Inicio | Reescribe el texto para que suene natural y humano, sin marcas típicas de IA. |
 
 
 <br>
