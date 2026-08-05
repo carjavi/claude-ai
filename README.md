@@ -14,8 +14,8 @@
 - [Claude desde terminal:](#claude-desde-terminal)
   - [Install](#install)
   - [Start](#start)
-  - [Comando desde el terminal](#comando-desde-el-terminal)
-  - [Comandos esenciales (los que más vale la pena memorizar)](#comandos-esenciales-los-que-más-vale-la-pena-memorizar)
+  - [Comandos de Claude desde el Terminal](#comandos-de-claude-desde-el-terminal)
+  - [Comandos esenciales](#comandos-esenciales)
   - [Comandos de razonamiento y estructura](#comandos-de-razonamiento-y-estructura)
   - [Comandos de revisión y crítica](#comandos-de-revisión-y-crítica)
   - [Comandos de estilo y tono](#comandos-de-estilo-y-tono)
@@ -70,28 +70,38 @@ $p=[Environment]::GetEnvironmentVariable('Path','User');if($p -notlike "*$env:US
 ```
 
 ## Start
-Escribe ```claude```
-* ```/login``` para autenticarte
-* ```Esc``` interrumpe a Claude si está trabajando
-* ```/help``` muestra los comandos disponibles
-* ```/skills``` ver todos los Skills disponibles
-* ```/plugin list``` ver los plugins instalados
-* ```/exit``` o ```Ctrl+C``` para salir
-* /doctor 
-* /remote-control  
-* /config
+Escribe:  ```claude```
 
-## Comando desde el terminal  
+| Comando | Definition |
+|---|---|
+| `/login` | Autentica al usuario en Claude. |
+| `Esc` | Interrumpe a Claude si está trabajando. |
+| `/help` | Muestra los comandos disponibles. |
+| `/skills` | Muestra todos los Skills disponibles. |
+| `/plugin list` | Muestra los plugins instalados. |
+| `/exit` | Sale de Claude Code. |
+| `Ctrl+C` | Sale de Claude Code o interrumpe la operación actual. |
+| `/doctor` | Diagnostica problemas en la instalación o configuración de Claude Code. |
+| `/remote-control` | Permite controlar una sesión de Claude Code de forma remota desde otro dispositivo. |
+| `/config` | Permite consultar y modificar la configuración de Claude Code. |
+
+<br>
+
+## Comandos de Claude desde el Terminal  
 ```PowerShell
-claude --version
-claude --resume 
-claude -c
+claude --version        # Muestra la versión instalada de Claude Code.
+claude --resume         # Reanuda una sesión anterior de Claude Code. Puede permitir seleccionar qué sesión quieres continuar.
+claude -c               # Continúa/reanuda la última conversación o sesión en el directorio actual. Es una forma abreviada de claude --continue.
+claude --allow-dangerously-skip-permissions             # Arranca en modo normal, pero agrega bypass al ciclo de Shift+Tab, así puedes activarlo y desactivarlo cuando quieras dentro de la misma sesión
+claude --allow-dangerously-skip-permissions --resume    # Si quieres retomar el contexto sin perder tu conversación
 ```
 
 > :memo: **Note:** Deberia correr tambien desde CMD, PowerShell 
 > :memo: **Note:** Carpeta de configuracion de claude ```cd ~/.claude/``` o ```%USERPROFILE%\.claude\skills\```
 
-## Comandos esenciales (los que más vale la pena memorizar)
+<br>
+
+## Comandos esenciales 
 
 | Comando | Posición | Qué hace |
 |---|---|---|
