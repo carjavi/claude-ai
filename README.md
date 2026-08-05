@@ -14,10 +14,22 @@
 - [Claude desde terminal:](#claude-desde-terminal)
   - [Install](#install)
   - [Start](#start)
+  - [Comando desde el terminal](#comando-desde-el-terminal)
   - [Comandos esenciales (los que más vale la pena memorizar)](#comandos-esenciales-los-que-más-vale-la-pena-memorizar)
   - [Comandos de razonamiento y estructura](#comandos-de-razonamiento-y-estructura)
   - [Comandos de revisión y crítica](#comandos-de-revisión-y-crítica)
   - [Comandos de estilo y tono](#comandos-de-estilo-y-tono)
+- [Ciclo de modos de permiso de Claude](#ciclo-de-modos-de-permiso-de-claude)
+  - [Plan Mode On](#plan-mode-on)
+  - [Auto Mode On](#auto-mode-on)
+  - [Modo normal (sin etiqueta)](#modo-normal-sin-etiqueta)
+  - [Auto-Accept Mode](#auto-accept-mode)
+  - [Iniciar sesión directamente en Plan Mode:](#iniciar-sesión-directamente-en-plan-mode)
+- [Autonomia de Claude](#autonomia-de-claude)
+  - [Bypass Mode ("YOLO mode")](#bypass-mode-yolo-mode)
+- [Setting Claude](#setting-claude)
+  - [CLAUDE.md](#claudemd)
+    - [ubicación](#ubicación)
 - [Tools Claude](#tools-claude)
 - [Skills](#skills)
   - [Skill (Definition)](#skill-definition)
@@ -64,7 +76,17 @@ Escribe ```claude```
 * ```/help``` muestra los comandos disponibles
 * ```/skills``` ver todos los Skills disponibles
 * ```/plugin list``` ver los plugins instalados
-* ```exit``` o ```Ctrl+D``` para salir
+* ```/exit``` o ```Ctrl+C``` para salir
+* /doctor 
+* /remote-control  
+* /config
+
+## Comando desde el terminal  
+```PowerShell
+claude --version
+claude --resume 
+claude -c
+```
 
 > :memo: **Note:** Deberia correr tambien desde CMD, PowerShell 
 > :memo: **Note:** Carpeta de configuracion de claude ```cd ~/.claude/``` o ```%USERPROFILE%\.claude\skills\```
@@ -98,6 +120,70 @@ Escribe ```claude```
 | Comando | Posición | Qué hace |
 |---|---|---|
 | `/ghost` | Inicio | Reescribe el texto para que suene natural y humano, sin marcas típicas de IA. |
+
+<br>
+
+# Ciclo de modos de permiso de Claude
+```Auto mode on / Modo Plan / Modo Ejecución / Modo Normal```. Atajo de teclado: presiona ```Shift+Tab``` para alternar entre modos de permiso:
+
+## Plan Mode On
+Es casi lo opuesto al Auto-Accept. En este modo, Claude Code puede leer y analizar todo lo que quiera, pero no puede modificar ningún archivo ni ejecutar ningún comando. Todo lo que puede hacer es mirar y pensar — y luego darte un plan. Tú revisas el plan, haces preguntas, pides ajustes, y solo cuando estás conforme cambias de modo y le dices que proceda. 
+
+A diferencia de ***Auto-Accept*** (que solo evita preguntarte por ediciones de archivo pero sigue pidiendo permiso para comandos de shell), Auto mode va más allá: también decide por sí mismo qué comandos de terminal son seguros de ejecutar, sin pedirte confirmación — pero tiene bloqueos duros para lo peligroso.
+
+## Auto Mode On
+Automatiza las aprobaciones de permisos para escritura de archivos y comandos bash usando un clasificador integrado. Las acciones seguras se ejecutan automáticamente, mientras que las potencialmente destructivas se bloquean sin pedirte nada. Auto-aprueba lo que juzga seguro y solo se detiene ante acciones genuinamente destructivas (borrados, wipes, rm -rf)
+
+## Modo normal (sin etiqueta)
+El modo estándar. Claude pide confirmación antes de modificar cualquier archivo o ejecutar cualquier comando. Cada cambio pasa por una aprobación manual tuya, uno por uno. Es el más seguro, pero el más lento si estás haciendo muchos cambios seguidos. 
+
+## Auto-Accept Mode 
+Claude aplica automáticamente las ediciones de archivos sin pedir confirmación para cada una. Aún pide permiso antes de ejecutar comandos de shell, pero los cambios de archivo ocurren de inmediato. Es un punto medio: ganas velocidad en ediciones de código, pero mantienes cierto control sobre comandos potencialmente peligrosos (como borrar algo o instalar paquetes). 
+
+
+> :memo: **Note:** Escribe ```/plan``` directamente en el prompt para entrar en modo planificación sin necesidad del atajo de teclado, especialmente útil si ya estás a mitad de una conversación. 
+
+> :memo: **Note:** ```Shift+Tab``` tiene comportamientos inconsistentes según versión de claude
+
+
+## Iniciar sesión directamente en Plan Mode:
+
+```bash
+claude --permission-mode plan
+```
+
+# Autonomia de Claude 
+Recomendación primero probar con el modo **Auto-Accept Mode** o **Auto Mode On**, y si se le quiere dar mayor control Claude usar **modo Bypass**.
+
+## Bypass Mode ("YOLO mode")
+Salta todas las verificaciones de permisos. Claude ejecuta cualquier herramienta sin preguntar.<br>
+
+Activar Bypass Mode: ```Desde el Terminal```
+```Bash
+claude --allow-dangerously-skip-permissions # Arranca en modo normal, pero agrega bypass al ciclo de Shift+Tab, así puedes activarlo y desactivarlo cuando quieras dentro de la misma sesión
+claude --dangerously-skip-permissions       # Arranca Sesion ya activo en bypassPermissions. No puedes salir de ese modo sin reiniciar la sesión completa.
+
+# Esto reabre tu última sesión (con todo el historial/contexto) pero ahora con el flag activo, para que Shift+Tab te deje entrar a bypass.
+claude --allow-dangerously-skip-permissions --resume    # Si quieres retomar el contexto sin perder tu conversación
+claude --allow-dangerously-skip-permissions -c          # Si quieres retomar el contexto sin perder tu conversación
+
+```
+> :memo: **Note:** Los comandos para iniciar el modo Yolo no es un comando que puedas escribir dentro de una sesión ya iniciada. Es solo desde el arranque (Es un flag de arranque), no se puede inyectar después.
+
+> :memo: **Note:** Dependiendo como se active el modo Yolo, se puede activar o no en una sesison. 
+
+
+# Setting Claude
+
+## CLAUDE.md
+Ese archivo se carga automáticamente en cada sesión de Claude Code, sin importar el proyecto en el que estés. Los archivos de alcance global viven en ~/.claude/ y aplican a todos los proyectos, mientras que los de alcance de proyecto viven en el repo
+
+### ubicación
+```bash
+~/.claude/CLAUDE.md	                     # Global — todos tus proyectos
+.claude/CLAUDE.md (dentro del repo) 	 # Proyecto — se puede versionar y compartir con el equipo
+```
+
 
 
 <br>
