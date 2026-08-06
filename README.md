@@ -15,6 +15,7 @@
   - [Install](#install)
   - [Start](#start)
   - [Comandos de Claude desde el Terminal](#comandos-de-claude-desde-el-terminal)
+  - [Shell Mode](#shell-mode)
   - [Comandos esenciales](#comandos-esenciales)
   - [Comandos de razonamiento y estructura](#comandos-de-razonamiento-y-estructura)
   - [Comandos de revisión y crítica](#comandos-de-revisión-y-crítica)
@@ -98,6 +99,19 @@ claude --allow-dangerously-skip-permissions --resume    # Si quieres retomar el 
 
 > :memo: **Note:** Deberia correr tambien desde CMD, PowerShell 
 > :memo: **Note:** Carpeta de configuracion de claude ```cd ~/.claude/``` o ```%USERPROFILE%\.claude\skills\```
+
+<br>
+
+##  Shell Mode
+En Claude Code, escribir ```!``` al inicio de tu entrada activa el "bash mode": todo lo que escribas después del ```!``` se ejecuta directamente en tu shell, sin pasar por el modelo.
+
+Ejemplo de uso:
+```bash
+!git status
+!npm test
+!ls -la
+```
+
 
 <br>
 
